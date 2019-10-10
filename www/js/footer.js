@@ -1,0 +1,1 @@
+export const dataFoot = {div,p,img,a};

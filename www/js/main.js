@@ -1,3 +1,7 @@
+import { dataHead } from './header.js';
+import { dataFoot } from './footer.js';
+
+
 let body = document.querySelector('body');
 let header = document.createElement('header');
 let main = document.createElement('main');
