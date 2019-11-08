@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+body {
+    background-image: url(/www/img/telefonB.jpg);
+    color: grey;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center 20%;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;;
+}
+
+h1 {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 15vh;
+    font-size: 48px;
+}
+
+.contact-container {
+    font-size: 20px;
+    margin-top:20px;
+    width: 80px;
+    margin:auto;
+}
+
+.contact-row {
+    display: flex;
+}
+
+.contact-column {
+    margin: 2px;
+    padding: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #000;
+    border-radius: 6px;
+    border: solid;
+}
+
+.contact-name {
+    flex-basis: 30vh;
+}
+
+.contact-phone {
+    flex-basis: 30vh;
+}
+
+.contact-email {
+    flex-grow: 2;
+    flex-basis: 20vh;
+}
+
+.contact-header {
+    background-color: rgba(60, 95, 79, 0.9);
+    font-weight: bolder;
+    color:black;
+}
+
+.contact-edit, .contact-delete, .contact-add-entry {
+    flex-basis: 5%;
+    text-align: center;
+    cursor: pointer;
+}
+
+#newPersonModal {
+    background-color: rgba(250, 250, 250, 0.7);
+    width: 700px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 99;
+    top: 15%;
+    position: absolute;
+    left:25%;
+}
+
+#newPersonModal input {
+    box-sizing: border-box;
+    display:block;
+    margin-bottom: 25px;
+    padding: 10px;
+    border:3px;
+    width: 100%;
+    }
+
+.input-err {
+    background-image: red;
+}
+
+#backdrop {
+    width:100%;
+    height:100%;
+    position:fixed;
+    background-color: rgba(0, 0, 0,0.8);
+    z-index: 50;
+    top:0;
+    left:0;
+
+}
+
+#newPersonSubmitBtn {
+    background-color: rgba(80, 76, 76, 0.2);
+}
+
+#newPersonCancelBtn {
+    background-color:rgba(197, 99, 53, 0.9);
+}
+
+#restoreMeBtn {
+    background-color: rgba(80, 76, 76, 0.2);
+}
+
+button {
+padding:15px;
+border-radius: 5px;
+border:none;
+float: right;
+margin:5px;
+cursor: pointer;
+}
+
+button:hover {
+    padding:13px;
+}
+
+.disable-modal {
+    visibility: hidden;
+}
+
+.enable-modal {
+    visibility: visible;
+}
+
+i {
+    pointer-events: none;
+}
