@@ -7,7 +7,52 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
+<h1>Phone Contact's Book</h1>
+<div class ="contact-container" id = "contactContainer">
+    <div class ="contact-row">
+        <div clss ="contact-column contact-name contact-header">Name</div>
+        <div clss ="contact-column contact-phone contact-header">Phone</div>
+        <div clss ="contact-column contact-email contact-header">Email</div>
+        <div clss ="contact-column contact-add-entry contact-header" id ="addNewEntry">+</div>
 
+    </div>
+    <span id ="showContactBody"></span>
+
+</div>
+<div class ="disable-modal" id ="backdrop"></div>
+
+<div class ="disable-modal" id ="newPersonModal">
+    <h1>Add New Contact</h1>
+
+    <label for ="newPersonName">Name</label>
+    <input type ="text" id ="newPersonName">
+
+    <label for ="newPersonPhone">Phone</label>
+    <input type ="text" id ="newPersonPhone">
+
+    <label for ="newPersonEmail">Email</label>
+    <input type ="text" id ="newPersonEmail">
+
+    <button id ="newPersonCancelBtn">Cancel</button>
+
+    <button id ="newPersonSubmitBtn">Submit</button>
+     
+</div>
+
+<div class ="disable-modal" id ="personHistoryModal">
+    <h1>History Of The Contact</h1>
+
+    <ul class ="list-data" id ="listHistory">
+        <li id ="nameHistory">Name:</li>
+        <li id ="phoneHistory">Phone:</li>
+        <li id ="emailHistory">Email:</li>
+
+        <li>
+            <li>old phones:<button id ="restoreMe">Restore</button></li>
+            <li>old emails:<button id ="restoreMe">Restore</button></li>
+        </li>
+    </ul>
+</div>
 <body>
 
 
