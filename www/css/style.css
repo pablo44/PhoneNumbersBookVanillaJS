@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 
 body {
-    background-image: url(/www/img/telefonB.jpg);
+    background-image: url(/img/telefonB.jpg);
     color: grey;
     background-size: cover;
     background-repeat: no-repeat;
@@ -84,6 +84,17 @@ h1 {
     padding: 10px;
     border:3px;
     width: 100%;
+    }
+
+    #personHistoryModal {
+        background-color: rgba(226, 110, 110, 0.7);
+    width: 700px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 99;
+    top: 15%;
+    position: absolute;
+    left:25%;
     }
 
 .input-err {

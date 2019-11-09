@@ -63,7 +63,7 @@ function refreshDOMWindow() {
     lableModalPhone.innerHTML = 'Phone';
 
     let inputPhone = document.createElement('input');
-    inputPhone.type = 'text';//here is the place for validation numbers
+    inputPhone.type = 'text';//here is the place for validation of phone numbers
     inputPhone.id = 'newPersonPhone';
 
     let lableModalEmail = document.createElement('lable');
