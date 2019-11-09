@@ -146,7 +146,7 @@ function refreshDOMWindow() {
 
     let emailHolder = document.createElement('span');
     emailHolder.id = 'emailHolder';
-    emailHolder.innerHTML = contacts[i].history.email;
+    emailHolder.innerHTML = setEmailHistoric();
 
     let restoreBtn = document.createElement('input');
     restoreBtn.type = 'submit';
@@ -159,12 +159,15 @@ function refreshDOMWindow() {
     
 
 
-
+    //TO JEST DO EMAIL HOLDER,PHONE HOLDER
     //here function to input a list of e.g phones
-     let userhistory = contacts[i].history;
-    for (let i=0; i<userhistory.length; i++){
-        let li = document.createElement('li');
-        li.innerHTML =+ userhistory[i];
+    function setEmailHistoric(){
+        let userhistory = contacts[i].history.email;
+        for (let i=0; i<userhistory.length; i++){
+            let li = document.createElement('li');
+            li.innerHTML =+ userhistory[i];
+        }
+     
         currentContactData.appendChild(li);
     }
 
