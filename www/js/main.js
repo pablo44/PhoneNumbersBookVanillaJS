@@ -100,6 +100,8 @@ function refreshDOMWindow() {
     currentContactData.className = 'list-data';
     currentContactData.id = 'listHisotry';
 
+    personHistoryModal.append(currentContactData);
+
     let currentNameHist = document.createElement('li');
     currentNameHist.innerHTML = contacts[i].name;
 
@@ -114,9 +116,13 @@ function refreshDOMWindow() {
     let historyRow = document.createElement('div');
     historyRow.className = 'history-row';
 
+    personHistoryModal.append(historyRow);
+
     let oldPhones = document.createElement('div');
     oldPhones.className = 'history-col history-phones';
-    oldPhones.innerHTML ='old phones';
+    oldPhones.innerHTML = 'old phones';
+
+
 
     let oldPhonesList = document.createElement('ul');
     oldPhonesList.className = 'old-phones';
@@ -126,17 +132,17 @@ function refreshDOMWindow() {
 
     let phoneHolder = document.createElement('span');
     phoneHolder.id = 'phoneHolder';
-    phoneHolder.innerHTML = contacts[i].history.phone;
+    phoneHolder.innerHTML = setPhoneHistoric();
 
-    let restoreBtn = document.createElement('input');
-    restoreBtn.type = 'submit';
-    restoreBtn.value = 'Submit';
-    restoreBtn.id = 'restoreMeBtn';
-    restoreBtn.innerHTML ='Restore';
+    let restoreBtnPhone = document.createElement('input');
+    restoreBtnPhone.type = 'submit';
+    restoreBtnPhone.value = 'Submit';
+    restoreBtnPhone.id = 'restoreMeBtnPhone';
+    restoreBtnPhone.innerHTML = 'Restore';
 
     let oldEmails = document.createElement('div');
     oldEmails.className = 'history-col history-emails';
-    oldEmails.innerHTML ='old phones';
+    oldEmails.innerHTML = 'old phones';
 
     let oldEmailsList = document.createElement('ul');
     oldEmailsList.className = 'old-emails';
@@ -148,37 +154,51 @@ function refreshDOMWindow() {
     emailHolder.id = 'emailHolder';
     emailHolder.innerHTML = setEmailHistoric();
 
-    let restoreBtn = document.createElement('input');
-    restoreBtn.type = 'submit';
-    restoreBtn.value = 'Submit';
-    restoreBtn.id = 'restoreMeBtn';
-    restoreBtn.innerHTML ='Restore';
+    let restoreBtnEmail = document.createElement('input');
+    restoreBtnEmail.type = 'submit';
+    restoreBtnEmail.value = 'Submit';
+    restoreBtnEmail.id = 'restoreMeBtnEmails';
+    restoreBtnEmail.innerHTML = 'Restore';
 
-    
+    historyRow.append(oldPhones, oldEmails);
 
-    
+    oldPhones.append(oldPhonesList, phoneItemHistoric, phoneHolder, restoreBtnPhone);
+    oldEmails.append(oldEmailList, emailItemHistoric, emailHolder, restoreBtnEmail);
+
+    function setPhoneHistoric() {
+        let userhistory = contacts[i].history.phone;
+        for (let i = 0; i < userhistory.length; i++) {
+            let li = document.createElement('li');
+            li.innerHTML = + userhistory[i];
+        }
+    }
 
 
     //TO JEST DO EMAIL HOLDER,PHONE HOLDER
     //here function to input a list of e.g phones
-    function setEmailHistoric(){
+    function setEmailHistoric() {
         let userhistory = contacts[i].history.email;
-        for (let i=0; i<userhistory.length; i++){
+        for (let i = 0; i < userhistory.length; i++) {
             let li = document.createElement('li');
-            li.innerHTML =+ userhistory[i];
+            li.innerHTML = + userhistory[i];
         }
-     
-        currentContactData.appendChild(li);
     }
 
-    personHistoryModal.append(currentContactData);
+
+
+
+
+
+} 
+
+    
     
 
 
 
 
 
-}
+
 
 
 
