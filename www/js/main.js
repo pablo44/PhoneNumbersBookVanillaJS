@@ -184,6 +184,17 @@ function refreshDOMWindow() {
         }
     }
 
+    //----------------------------------------START----------------------------
+
+    contactContainer = document.getElementById('contactContainer');
+    let prevContactContainer = document.getElementById('showContactBody');
+    contactContainer.removeChild(prevContactContainer);
+
+    let newContactBody = document.createElement('span');
+    newContactBody.id = 'showContactBody';
+
+    contactContainer.appendChild(newContactBody);
+
 
 
 
