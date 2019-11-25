@@ -77,8 +77,9 @@ function createGetModalInputsData() {
     contacts.push(contact);
     let i = 0;
 
-
 }
+
+
 function setCancelnewPersonModal(option) {
     let newPersonName = document.getElementById('newPersonName');
     let newPersonPhone = document.getElementById('newPersonPhone');
@@ -99,7 +100,7 @@ function setCancelnewPersonModal(option) {
 
 let newEntrytBtn = document.getElementById('addNewEntry')
 
-newEntrytBtn =addEventListener('click', ()=>{
+newEntrytBtn = addEventListener('click', () => {
     setCancelnewPersonModal('enable');
 })
 

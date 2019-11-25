@@ -22,7 +22,7 @@ h1 {
 .contact-container {
     font-size: 20px;
     margin-top:20px;
-    width: 80px;
+    width: 80%;
     margin:auto;
 }
 
@@ -42,17 +42,22 @@ h1 {
 }
 
 .contact-name {
-    flex-basis: 30vh;
+    flex-basis: 20vh;
 }
 
 .contact-phone {
-    flex-basis: 30vh;
+    flex-basis: 20vh;
+}
+
+.contact-add-entry {
+    flex-basis: 20vh;
 }
 
 .contact-email {
     flex-grow: 2;
     flex-basis: 20vh;
 }
+
 
 .contact-header {
     background-color: rgba(60, 95, 79, 0.9);
