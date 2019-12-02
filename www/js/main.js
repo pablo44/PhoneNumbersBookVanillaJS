@@ -4,18 +4,9 @@ let contacts = [];
 
 let body = document.querySelector('body');
 
-class Contact {
-    constructor(id, name, phone, email, history) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.history = [];
 
-    }
-}
 
-function createGetModalInputsData() {
+// function createGetModalInputsData() {
     let newPersonModal = document.createElement('div');
     newPersonModal.className = 'disable-modal';
     newPersonModal.id = 'newPersonModal';
@@ -70,14 +61,45 @@ function createGetModalInputsData() {
         let name = document.getElementById('newPersonName').value;
         let phone = document.getElementById('newPersonPhone').value;
         let email = document.getElementById('newPersonEmail').value;
+
+        class Contact {
+            constructor(id, name, phone, email, history) {
+                this.id = id;
+                this.name = name;
+                this.phone = phone;
+                this.email = email;
+                this.history = [];
+        
+            }
+        }
+    
+    
+
+        if(name !=='' && phone !=='' && email !==''){
+            let id = contacts.length
+            // let history = [];
+            let newContact = new Contact(id, name, phone, email, history);
+            contacts.push(newContact);
+            console.log(contacts);
+            newContact.history.push(newContact.name);
+            newContact.history.push(newContact.phone);
+            newContact.history.push(newContact.email);
+
+            let contactsJSON = JSON.stringify(contacts);
+            localStorage.setItem("contacts",contactsJSON);
+        }
+        
     })
 
-    let id = contacts.length;
-    let contact = new Contact(id, name, phone, email, history);
-    contacts.push(contact);
-    let i = 0;
+    // let name = inputName;
+    // let phone = inputPhone;
+    // let email = inputEmail;
+    // let id = contacts.length;
+    
+    
+    // let i = 0;
 
-}
+// }
 
 
 function setCancelnewPersonModal(option) {
@@ -143,7 +165,6 @@ contactContainer.append(showContactBody);
 
 
 
-
 let personHistoryModal = document.createElement('div');
 personHistoryModal.className = 'disable-modal';
 personHistoryModal.id = 'personHistoryModal';
@@ -163,13 +184,13 @@ currentContactData.id = 'listHisotry';
 personHistoryModal.append(currentContactData);
 
 let currentNameHist = document.createElement('li');
-currentNameHist.innerHTML = contacts[i].name;
+// currentNameHist.innerHTML = contacts[contact.name];
 
 let currentPhoneHist = document.createElement('li');
-currentPhoneHist.innerHTML = contacts[i].phone;
+// currentPhoneHist.innerHTML = contacts[contact.phone];
 
 let currentEmailHist = document.createElement('li');
-currentEmailHist.innerHTML = contacts[i].email;
+// currentEmailHist.innerHTML = contacts[contact.email];
 
 currentContactData.append(currentNameHist, currentPhoneHist, currentEmailHist);
 
@@ -177,6 +198,14 @@ let historyRow = document.createElement('div');
 historyRow.className = 'history-row';
 
 personHistoryModal.append(historyRow);
+
+
+function setEmailHistoric() {
+    let userhistory = contacts[i].history.email;
+    for (let i = 0; i < userhistory.length; i++) {
+        let li = document.createElement('li');
+        li.innerHTML =+ userhistory[i];
+    }
 
 let oldPhones = document.createElement('div');
 oldPhones.className = 'history-col history-phones';
@@ -212,7 +241,7 @@ emailItemHistoric.id = 'emailItmHistoric';
 
 let emailHolder = document.createElement('span');
 emailHolder.id = 'emailHolder';
-emailHolder.innerHTML = setEmailHistoric();
+emailHolder.innerHTML =  setEmailHistoric();
 
 let restoreBtnEmail = document.createElement('input');
 restoreBtnEmail.type = 'submit';
@@ -226,22 +255,17 @@ oldPhones.append(oldPhonesList, phoneItemHistoric, phoneHolder, restoreBtnPhone)
 oldEmails.append(oldEmailList, emailItemHistoric, emailHolder, restoreBtnEmail);
 
 function setPhoneHistoric() {
-    let userhistory = contacts[i].history.phone;
+    let userhistory = contact.history;
     for (let i = 0; i < userhistory.length; i++) {
         let li = document.createElement('li');
-        li.innerHTML = + userhistory[i];
+        li.innerHTML =+ userhistory[i];
     }
     // }
-
+    
 
     //TO JEST DO EMAIL HOLDER,PHONE HOLDER
     //here function to input a list of e.g phones
-    function setEmailHistoric() {
-        let userhistory = contacts[i].history.email;
-        for (let i = 0; i < userhistory.length; i++) {
-            let li = document.createElement('li');
-            li.innerHTML = + userhistory[i];
-        }
+    
     }
 
     //----------------------------------------START----------------------------
