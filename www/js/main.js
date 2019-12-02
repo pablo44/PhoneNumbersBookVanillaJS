@@ -31,9 +31,9 @@ colEmail.innerHTML = 'Email';
 colAddEntry.innerHTML = '<i class="fas fa-user-plus"></i>';
 
 
-let newEntrytBtn = document.getElementById('addNewEntry')
+// let newEntrytBtn = document.getElementById('addNewEntry')
 
-newEntrytBtn = addEventListener('click', () => {
+colAddEntry.addEventListener('click', () => {
     setCancelnewPersonModal('enable');
 })
 
@@ -135,12 +135,19 @@ newPersonSubmitBtn.addEventListener('click', () => {
 
         let contactsJSON = JSON.stringify(contacts);
         localStorage.setItem("contactsBook", contactsJSON);
-        // setCancelnewPersonModal('disable');
+        setCancelnewPersonModal('disable');
+        // newPersonModal.className = 'disable-modal';
+        // backdrop.className = 'disable-modal';
         console.log('co do holery')
         clearForm();
         displayContactBook();
     }
     // 
+});
+
+newPersonCancelBtn.addEventListener('click', () => {
+  
+    setCancelnewPersonModal('disable');
 })
 
 function displayContactBook() {
@@ -188,6 +195,7 @@ function displayContactBook() {
     }
 
 }
+// displayContactBook();
 
 // let name = inputName;
 // let phone = inputPhone;
@@ -219,15 +227,12 @@ function setCancelnewPersonModal(option) {
 
 
 
-
 // let cancelNewEntryBtn = document.getElementById('newPersonCancelBtn')
 
-// cancelNewEntryBtn = addEventListener('click', () =>{
+// cancelNewEntryBtn.addEventListener('click', () =>{
 //     setCancelnewPersonModal('disable');
 // })
-// // newPersonCancelBtn = addEventListener('click', () => {
-//     setCancelnewPersonModal('disable');
-// })
+
 
 
 //FUTURE CONTACTS DESTINATION PLACE AFTER SUBBMITION A NEW CONTACT
