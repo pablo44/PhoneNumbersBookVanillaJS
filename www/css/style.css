@@ -65,7 +65,7 @@ h1 {
     color:black;
 }
 
-.contact-edit, .contact-delete, .contact-add-entry {
+.contact-edit, .contact-delete, .contact-history, .contact-add-entry {
     flex-basis: 5%;
     text-align: center;
     cursor: pointer;
