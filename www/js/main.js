@@ -262,28 +262,28 @@ personHistoryModal.id = 'personHistoryModal';
 
 body.append(personHistoryModal);
 
-let header = document.createElement('h1');
+let header = document.createElement('h3');
 
 let contactsHistory = JSON.parse(localStorage['contactsBook']);
 console.log(contactsHistory)
 let i = contactsHistory.length;
-header.innerHTML = 'History of the Contact' + contactsHistory[i];
+header.innerHTML ="History of the contact: "  + contactsHistory[0].name;
 // header.innerHTML = 'History of the Contact'
 
 let currentContactData = document.createElement('ul');
 currentContactData.className = 'list-data';
 currentContactData.id = 'listHisotry';
 
-personHistoryModal.append(currentContactData);
+personHistoryModal.append(currentContactData, header);
 
 let currentNameHist = document.createElement('li');
-currentNameHist.innerHTML =  contactsHistory.name;
+currentNameHist.innerHTML =  contactsHistory[0].name;
 
 let currentPhoneHist = document.createElement('li');
-currentPhoneHist.innerHTML =  contactsHistory.phone;
+currentPhoneHist.innerHTML =  contactsHistory[1].phone;
 
 let currentEmailHist = document.createElement('li');
-currentEmailHist.innerHTML =  contactsHistory.email;
+currentEmailHist.innerHTML =  contactsHistory[2].email;
 
 currentContactData.append(currentNameHist, currentPhoneHist, currentEmailHist);
 

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 
 body {
-    background-image: url(/img/telefonB.jpg);
+    background-image: url(/img/telefonD.jpg);
     color: grey;
     background-size: cover;
     background-repeat: no-repeat;
@@ -18,6 +18,20 @@ h1 {
     margin-top: 15vh;
     font-size: 48px;
 }
+
+h3 {
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 3vh;
+    color: #541111;
+}
+
+li {
+    color:#541111;
+    padding-bottom: 16px;
+}
+
 
 .contact-container {
     font-size: 20px;
@@ -60,7 +74,7 @@ h1 {
 
 
 .contact-header {
-    background-color: rgba(60, 95, 79, 0.9);
+    background-color: rgba(60, 95, 79, 0.5);
     font-weight: bolder;
     color:black;
 }
@@ -92,7 +106,7 @@ h1 {
     }
 
     #personHistoryModal {
-        background-color: rgba(226, 110, 110, 0.7);
+        background-color: rgba(226, 110, 110, 0.9);
     width: 700px;
     padding: 10px;
     border-radius: 5px;
@@ -100,6 +114,10 @@ h1 {
     top: 15%;
     position: absolute;
     left:25%;
+    }
+
+    .fa-book-open {
+        color:rgba(226, 110, 110, 0.9);
     }
 
 .input-err {
