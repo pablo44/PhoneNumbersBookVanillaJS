@@ -173,6 +173,11 @@ function displayContactBook() {
             futureEditBtn.className = 'contact-column contact-edit';
             futureDeleteBtn.className = 'contact-column contact-delete'
             futureHistoryBtn.className = 'contact-column contact-history';
+            futureHistoryBtn.id ='contactHBtn';
+
+            futureHistoryBtn.addEventListener('click', ()=>{
+                personHistoryModal.className ='enable-modal'
+            })
 
             futureNameCol.innerHTML = contacts[i].name;
             futurePhoneCol.innerHTML = contacts[i].phone;
@@ -224,22 +229,11 @@ function setCancelnewPersonModal(option) {
 }
 
 
-
-
-
-// let cancelNewEntryBtn = document.getElementById('newPersonCancelBtn')
-
-// cancelNewEntryBtn.addEventListener('click', () =>{
-//     setCancelnewPersonModal('disable');
-// })
-
-
-
-//FUTURE CONTACTS DESTINATION PLACE AFTER SUBBMITION A NEW CONTACT
-
 let showContactBody = document.createElement('span');
 showContactBody.id = 'showContactBody';
 contactContainer.append(showContactBody);
+displayContactBook();
+
 
 // contactContainer = document.getElementById('contactContainer');
 // let prevContactContainer = document.getElementById('showContactBody');
@@ -259,6 +253,8 @@ contactContainer.append(showContactBody);
 
 //-------------------------------------------------------------------------------------------------
 //Modal to create HISTORY
+    // let futureHistoryBtn = document.getElementById('contactHBtn');
+    
 
 let personHistoryModal = document.createElement('div');
 personHistoryModal.className = 'disable-modal';
@@ -268,9 +264,11 @@ body.append(personHistoryModal);
 
 let header = document.createElement('h1');
 
-
-// header.innerHTML = 'History of the Contact' + contacts[i].name;
-header.innerHTML = 'History of the Contact'
+let contactsHistory = JSON.parse(localStorage['contactsBook']);
+console.log(contactsHistory)
+let i = contactsHistory.length;
+header.innerHTML = 'History of the Contact' + contactsHistory[i];
+// header.innerHTML = 'History of the Contact'
 
 let currentContactData = document.createElement('ul');
 currentContactData.className = 'list-data';
@@ -279,17 +277,18 @@ currentContactData.id = 'listHisotry';
 personHistoryModal.append(currentContactData);
 
 let currentNameHist = document.createElement('li');
-// currentNameHist.innerHTML = contacts[contact.name];
+currentNameHist.innerHTML =  contactsHistory.name;
 
 let currentPhoneHist = document.createElement('li');
-// currentPhoneHist.innerHTML = contacts[contact.phone];
+currentPhoneHist.innerHTML =  contactsHistory.phone;
 
 let currentEmailHist = document.createElement('li');
-// currentEmailHist.innerHTML = contacts[contact.email];
+currentEmailHist.innerHTML =  contactsHistory.email;
 
 currentContactData.append(currentNameHist, currentPhoneHist, currentEmailHist);
 
 let historyRow = document.createElement('div');
+historyRow.appendChild(currentContactData);
 historyRow.className = 'history-row';
 
 personHistoryModal.append(historyRow);
