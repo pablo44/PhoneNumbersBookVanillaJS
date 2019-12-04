@@ -107,6 +107,67 @@ function clearForm() {
     }
 }
 
+       
+        // let id = contactToRem.parentElement.id;
+    //     console.log(id)
+
+    //     console.log('dlete a contact: ' + id);
+    //     let warning = window.confirm('you are about to delete' + contactToRem + '?');
+    //     if(warning){
+    //         deleteContact(contactToRem)
+    //     }
+    //     })
+    // }
+
+
+
+function deleteContact(e) {
+    let contactsArray = document.getElementsByClassName('contact-delete');
+    console.log(contactsArray) 
+
+    for (let i = 0; i < contactsArray.length; i++) {
+   
+    
+    // contactsArray[i].addEventListener('click', (e) => {
+        let contactToRem = e.target.parentElement;
+        let finalToRemove = contactToRem.getAttribute('id');
+        console.log(contactToRem)
+        let idN = contactToRem.id;
+        console.log('id to remove',idN)
+        // for(let i =0; i<contactsArray.length; i++){
+        //     if(contactsArray[i].id ==idN){
+            let contactsBook = JSON.parse(localStorage['contactsBook']);
+                contactsBook.splice(contactToRem, 1);
+                localStorage['contactsBook']= JSON.stringify(contactsBook);
+                displayContactBook();
+                console.log(contactsArray)
+                // break;
+            }
+        }
+
+    
+   
+
+    
+//     let parentEl = document.getElementById('showContactBody');
+//     console.log(parentEl);
+    
+//     let childEl = document.getElementById(contacts[i].id)
+//         console.log(childEl)
+//         contactToRem = childEl;
+//     parentEl.removeChild(childEl);
+
+//     let contactsBook = JSON.parse(localStorage['contactsBook']);
+//     contactsBook.splice(contactToRem, 1);
+//     localStorage['contacts'] = JSON.stringify(contactsBook);
+//     displayContactBook();
+
+// })}}
+
+
+
+
+
 newPersonSubmitBtn.addEventListener('click', () => {
     let name = document.getElementById('newPersonName').value;
     let phone = document.getElementById('newPersonPhone').value;
@@ -146,7 +207,7 @@ newPersonSubmitBtn.addEventListener('click', () => {
 });
 
 newPersonCancelBtn.addEventListener('click', () => {
-  
+
     setCancelnewPersonModal('disable');
 })
 
@@ -167,16 +228,24 @@ function displayContactBook() {
             let futureHistoryBtn = document.createElement('div')
 
             futureRow.className = 'contact-row';
+            futureRow.setAttribute ('id',contacts[i].id) ;
             futureNameCol.className = 'contact-column contact-name';
             futurePhoneCol.className = 'contact-column contact-phone';
             futureEmailCol.className = 'contact-column contact-email';
             futureEditBtn.className = 'contact-column contact-edit';
             futureDeleteBtn.className = 'contact-column contact-delete'
             futureHistoryBtn.className = 'contact-column contact-history';
-            futureHistoryBtn.id ='contactHBtn';
+            futureHistoryBtn.id = 'contactHBtn';
+            // futureDeleteBtn.setAttribute('data-id', 'n +');
+            futureDeleteBtn.id = 'data-id';
 
-            futureHistoryBtn.addEventListener('click', ()=>{
-                personHistoryModal.className ='enable-modal'
+            futureDeleteBtn.addEventListener('click', deleteContact)
+            //  () => {
+            //     alert('here we are')
+            // })
+
+            futureHistoryBtn.addEventListener('click', () => {
+                personHistoryModal.className = 'enable-modal'
             })
 
             futureNameCol.innerHTML = contacts[i].name;
@@ -234,6 +303,7 @@ showContactBody.id = 'showContactBody';
 contactContainer.append(showContactBody);
 displayContactBook();
 
+// showContactBody.addEventListener('click', deleteContact);
 
 // contactContainer = document.getElementById('contactContainer');
 // let prevContactContainer = document.getElementById('showContactBody');
@@ -253,8 +323,8 @@ displayContactBook();
 
 //-------------------------------------------------------------------------------------------------
 //Modal to create HISTORY
-    // let futureHistoryBtn = document.getElementById('contactHBtn');
-    
+// let futureHistoryBtn = document.getElementById('contactHBtn');
+
 
 let personHistoryModal = document.createElement('div');
 personHistoryModal.className = 'disable-modal';
@@ -267,7 +337,7 @@ let header = document.createElement('h3');
 let contactsHistory = JSON.parse(localStorage['contactsBook']);
 console.log(contactsHistory)
 let i = contactsHistory.length;
-header.innerHTML ="History of the contact: "  + contactsHistory[0].name;
+header.innerHTML = "History of the contact: " + contactsHistory[0].name;
 // header.innerHTML = 'History of the Contact'
 
 let currentContactData = document.createElement('ul');
@@ -277,13 +347,13 @@ currentContactData.id = 'listHisotry';
 personHistoryModal.append(currentContactData, header);
 
 let currentNameHist = document.createElement('li');
-currentNameHist.innerHTML =  contactsHistory[0].name;
+currentNameHist.innerHTML = contactsHistory[0].name;
 
 let currentPhoneHist = document.createElement('li');
-currentPhoneHist.innerHTML =  contactsHistory[1].phone;
+currentPhoneHist.innerHTML = contactsHistory[0].phone;
 
 let currentEmailHist = document.createElement('li');
-currentEmailHist.innerHTML =  contactsHistory[2].email;
+currentEmailHist.innerHTML = contactsHistory[0].email;
 
 currentContactData.append(currentNameHist, currentPhoneHist, currentEmailHist);
 

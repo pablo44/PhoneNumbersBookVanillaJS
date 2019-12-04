@@ -50,7 +50,7 @@ li {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    border: 1px solid #000;
+    border: 1px solid rgb(35, 142, 243);
     border-radius: 6px;
     border: solid;
 }
@@ -76,7 +76,7 @@ li {
 .contact-header {
     background-color: rgba(60, 95, 79, 0.5);
     font-weight: bolder;
-    color:black;
+    color:white;
 }
 
 .contact-edit, .contact-delete, .contact-history, .contact-add-entry {
@@ -116,8 +116,12 @@ li {
     left:25%;
     }
 
-    .fa-book-open {
+    .fa-trash-alt {
         color:rgba(226, 110, 110, 0.9);
+    }
+
+    .fa-book-open {
+        color: rgba(110, 174, 226, 0.9);;
     }
 
 .input-err {
