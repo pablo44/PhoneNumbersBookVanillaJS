@@ -144,8 +144,16 @@ function deleteContact(e) {
         console.log(contactsArray)
         // break;
     }
-// }
 
+
+    function editContact (e){
+
+        let contactToEdit = e.target.closest('[id]');
+        let finalToEdit = contactToEdit.getAttribute('id');
+        let contactsBook = JSON.parse(localStorage['contactsBook']);
+        let contactToEIndex = contactsBook.findIndex(x =>x.id ==finalToEdit);
+        setCancelnewPersonModal('enable');
+    }
 
 
 
@@ -242,8 +250,7 @@ function displayContactBook() {
             // futureDeleteBtn.id = 'data-id';
 
             futureDeleteBtn.addEventListener('click', deleteContact)
-            futureEditBtn.addEventListener('click',() => {
-                    alert('here we are')})
+            futureEditBtn.addEventListener('click',editContact)
                 // })
             //  () => {
             //     alert('here we are')
