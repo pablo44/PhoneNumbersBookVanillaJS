@@ -153,6 +153,15 @@ function deleteContact(e) {
         let contactsBook = JSON.parse(localStorage['contactsBook']);
         let contactToEIndex = contactsBook.findIndex(x =>x.id ==finalToEdit);
         setCancelnewPersonModal('enable');
+
+        let newContactName = document.getElementById('newPersonName')
+        let newContactPhone = document.getElementById('newPersonPhone')
+        let newContactEmail = document.getElementById('newPersonEmail')
+
+        newContactName.value= contactToEIndex;
+        newContactPhone.value = contactToEIndex.phone;
+        newContactEmail.value = contactToEIndex.email;
+
     }
 
 
