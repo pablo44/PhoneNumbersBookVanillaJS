@@ -147,20 +147,25 @@ function deleteContact(e) {
 
 
     function editContact (e){
-
+        
         let contactToEdit = e.target.closest('[id]');
         let finalToEdit = contactToEdit.getAttribute('id');
         let contactsBook = JSON.parse(localStorage['contactsBook']);
         let contactToEIndex = contactsBook.findIndex(x =>x.id ==finalToEdit);
         setCancelnewPersonModal('enable');
 
+        
         let newContactName = document.getElementById('newPersonName')
         let newContactPhone = document.getElementById('newPersonPhone')
         let newContactEmail = document.getElementById('newPersonEmail')
 
-        newContactName.value= contactToEIndex;
-        newContactPhone.value = contactToEIndex.phone;
-        newContactEmail.value = contactToEIndex.email;
+        let nameToEdit = e.target.parentElement.children[0].innerText;
+         let phoneToEdit = e.target.parentElement.children[1].innerText;
+         let emailToEdit = e.target.parentElement.children[2].innerText;
+
+        newContactName.value= nameToEdit;
+        newContactPhone.value = phoneToEdit;
+        newContactEmail.value = emailToEdit;
 
     }
 
