@@ -185,7 +185,8 @@ newPersonSubmitBtn.addEventListener('click', () => {
     }
 
     if (name !== '' && phone !== '' && email !== '') {
-        let id = contacts.length
+        // let id = contacts.length
+        let id = (new Date()).getTime();
         // let history = [];
         let newContact = new Contact(id, name, phone, email, history);
         contacts.push(newContact);
