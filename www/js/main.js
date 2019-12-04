@@ -242,6 +242,9 @@ function displayContactBook() {
             // futureDeleteBtn.id = 'data-id';
 
             futureDeleteBtn.addEventListener('click', deleteContact)
+            futureEditBtn.addEventListener('click',() => {
+                    alert('here we are')})
+                // })
             //  () => {
             //     alert('here we are')
             // })
