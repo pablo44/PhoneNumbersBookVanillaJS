@@ -107,51 +107,51 @@ function clearForm() {
     }
 }
 
-       
-        // let id = contactToRem.parentElement.id;
-    //     console.log(id)
 
-    //     console.log('dlete a contact: ' + id);
-    //     let warning = window.confirm('you are about to delete' + contactToRem + '?');
-    //     if(warning){
-    //         deleteContact(contactToRem)
-    //     }
-    //     })
-    // }
+// let id = contactToRem.parentElement.id;
+//     console.log(id)
+
+//     console.log('dlete a contact: ' + id);
+//     let warning = window.confirm('you are about to delete' + contactToRem + '?');
+//     if(warning){
+//         deleteContact(contactToRem)
+//     }
+//     })
+// }
 
 
 
 function deleteContact(e) {
     let contactsArray = document.getElementsByClassName('contact-delete');
-    console.log(contactsArray) 
+    console.log(contactsArray)
 
-    for (let i = 0; i < contactsArray.length; i++) {
-   
-    
-    // contactsArray[i].addEventListener('click', (e) => {
+    // for (let i = 0; i < contactsArray.length; i++) {
+
+
+        // contactsArray[i].addEventListener('click', (e) => {
         let contactToRem = e.target.parentElement;
         let finalToRemove = contactToRem.getAttribute('id');
         console.log(contactToRem)
         let idN = contactToRem.id;
-        console.log('id to remove',idN)
+        console.log('id to remove', idN)
         // for(let i =0; i<contactsArray.length; i++){
         //     if(contactsArray[i].id ==idN){
-            let contactsBook = JSON.parse(localStorage['contactsBook']);
-                contactsBook.splice(contactToRem, 1);
-                localStorage['contactsBook']= JSON.stringify(contactsBook);
-                displayContactBook();
-                console.log(contactsArray)
-                // break;
-            }
-        }
+        let contactsBook = JSON.parse(localStorage['contactsBook']);
+        contactsBook.splice(contactToRem, 1);
+        localStorage['contactsBook'] = JSON.stringify(contactsBook);
+        displayContactBook();
+        console.log(contactsArray)
+        // break;
+    }
+// }
 
-    
-   
 
-    
+
+
+
 //     let parentEl = document.getElementById('showContactBody');
 //     console.log(parentEl);
-    
+
 //     let childEl = document.getElementById(contacts[i].id)
 //         console.log(childEl)
 //         contactToRem = childEl;
@@ -229,7 +229,7 @@ function displayContactBook() {
             let futureHistoryBtn = document.createElement('div')
 
             futureRow.className = 'contact-row';
-            futureRow.setAttribute ('id',contacts[i].id) ;
+            futureRow.setAttribute('id', contacts[i].id);
             futureNameCol.className = 'contact-column contact-name';
             futurePhoneCol.className = 'contact-column contact-phone';
             futureEmailCol.className = 'contact-column contact-email';
