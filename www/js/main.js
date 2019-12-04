@@ -129,15 +129,16 @@ function deleteContact(e) {
 
 
         // contactsArray[i].addEventListener('click', (e) => {
-        let contactToRem = e.target.parentElement;
+        let contactToRem = e.target.closest('[id]');
         let finalToRemove = contactToRem.getAttribute('id');
-        console.log(contactToRem)
+        console.log(finalToRemove)
         let idN = contactToRem.id;
         console.log('id to remove', idN)
         // for(let i =0; i<contactsArray.length; i++){
         //     if(contactsArray[i].id ==idN){
         let contactsBook = JSON.parse(localStorage['contactsBook']);
-        contactsBook.splice(contactToRem, 1);
+        let contactIndex = contactsBook.findIndex(x => x.id == finalToRemove);
+        contactsBook.splice(contactIndex, 1);
         localStorage['contactsBook'] = JSON.stringify(contactsBook);
         displayContactBook();
         console.log(contactsArray)
@@ -238,7 +239,7 @@ function displayContactBook() {
             futureHistoryBtn.className = 'contact-column contact-history';
             futureHistoryBtn.id = 'contactHBtn';
             // futureDeleteBtn.setAttribute('data-id', 'n +');
-            futureDeleteBtn.id = 'data-id';
+            // futureDeleteBtn.id = 'data-id';
 
             futureDeleteBtn.addEventListener('click', deleteContact)
             //  () => {
