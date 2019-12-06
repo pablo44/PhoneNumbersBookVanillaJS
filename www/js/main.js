@@ -384,7 +384,7 @@ function setCancelHistoryModal(e) {
     console.log(i)
     let foundek = undefined;
     for( let i of contactsHistory){
-        if(contactsHistory[i] === nameToHistory){
+        if(contactsHistory[i].name === nameToHistory){
             
             return foundek =contactsHistory[i].history;
            
