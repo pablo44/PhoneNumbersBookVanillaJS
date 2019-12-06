@@ -29,7 +29,8 @@ h3 {
 
 li {
     color:#541111;
-    padding-bottom: 16px;
+    padding-bottom: 25px;
+    padding-top: 16px;
 }
 
 
@@ -114,6 +115,10 @@ li {
     top: 15%;
     position: absolute;
     left:25%;
+    }
+
+    #header-modal {
+        padding-top:16px;
     }
 
     .fa-trash-alt {

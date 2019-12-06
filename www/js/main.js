@@ -372,50 +372,90 @@ function setCancelHistoryModal(e) {
     personHistoryModal.className = 'enable-modal';
     personHistoryModal.id = 'personHistoryModal';
     let backdrop = document.getElementById('backdrop');
-    backdrop.className = `enable-modal`;
+    backdrop.className = 'enable-modal';
 
     body.append(personHistoryModal);
 
     let header = document.createElement('h3');
+    header.id = 'header-modal';
 
     let contactsHistory = JSON.parse(localStorage['contactsBook']);
     console.log(contactsHistory)
-    let i = contactsHistory.length;
+    let i = e.target.closest('[id]');
     console.log(i)
-    let foundek = undefined;
-    for( let i of contactsHistory){
+    
+    for( let i =0;i< contactsHistory.length; i++){
         if(contactsHistory[i].name === nameToHistory){
+            let newThing= contactsHistory[i];
+            console.log(newThing)
             
-            return foundek =contactsHistory[i].history;
+            console.log(newThing.history[1]);
+            console.log(contactsHistory)
+            let nameExHistory = e.target.parentElement.children[0].innerText;
+        console.log(nameExHistory)
+        header.innerHTML = "History of the contact: " + nameToHistory;
+        // header.innerHTML = 'History of the Contact'
+    //NOW THAT WHAT I'VE CLICKED I HAVE TO FIND IT AS AN OBJECT WITH A PROPERTY "HISTORY" WHICH IS AN ARRAY
+        let currentContactData = document.createElement('ul');
+        currentContactData.className = 'list-data';
+        currentContactData.id = 'listHisotry';
+    
+        personHistoryModal.append(currentContactData, header);
+    
+        let currentNameHist = document.createElement('li');
+        console.log(currentNameHist)
+        currentNameHist.innerHTML = newThing.history[0];
+    
+        let currentPhoneHist = document.createElement('li');
+        currentPhoneHist.innerHTML = newThing.history[1];
+        
+    
+        let currentEmailHist = document.createElement('li');
+        currentEmailHist.innerHTML = newThing.history[2];
+
+        let personHistoryCancelBtn = document.createElement('button');
+        personHistoryCancelBtn.type = 'submit';
+        personHistoryCancelBtn.value = 'Cancel';
+        personHistoryCancelBtn.id = 'personHistoryCancelBtn';
+        personHistoryCancelBtn.innerHTML= '<i class="fas fa-remove-format"></i>';
+
+        let restoreBtn = document.createElement('button');
+        restoreBtn.type = 'submit';
+        restoreBtn.value = 'Submit';
+        restoreBtn.id = 'restoreBtn';
+        restoreBtn.innerHTML= '<i class="far fa-window-restore"></i>';
+
+        let restoreBtn2 = document.createElement('button');
+        restoreBtn2.type = 'submit';
+        restoreBtn2.value = 'Submit';
+        restoreBtn2.id = 'restoreBtn';
+        restoreBtn2.innerHTML= '<i class="far fa-window-restore"></i>';
+
+        let restoreBtn3 = document.createElement('button');
+        restoreBtn3.type = 'submit';
+        restoreBtn3.value = 'Submit';
+        restoreBtn3.id = 'restoreBtn';
+        restoreBtn3.innerHTML= '<i class="far fa-window-restore"></i>';
+
+        // currentContactData.append(currentNameHist, currentPhoneHist, currentEmailHist,);
+        currentNameHist.append(restoreBtn)
+        currentPhoneHist.append(restoreBtn2)
+        currentEmailHist.append(restoreBtn3)
+
+        header.append( personHistoryCancelBtn)
+    
+        currentContactData.append(currentNameHist, currentPhoneHist, currentEmailHist);
+
+    //     personHistoryCancelBtn.addEventListener('click', () => {
+    //         setCancelHistoryModal('disable')
+    //     });
+    // }
            
         }
-        console.log(contactsHistory)
-        console.log(foundek)
-    }
-    let nameExHistory = e.target.parentElement.children[0].innerText;
-    console.log(nameExHistory)
-    header.innerHTML = "History of the contact: " + nameToHistory;
-    // header.innerHTML = 'History of the Contact'
-//NOW THAT WHAT I'VE CLICKED I HAVE TO FIND IT AS AN OBJECT WITH A PROPERTY "HISTORY" WHICH IS AN ARRAY
-    let currentContactData = document.createElement('ul');
-    currentContactData.className = 'list-data';
-    currentContactData.id = 'listHisotry';
-
-    personHistoryModal.append(currentContactData, header);
-
-    let currentNameHist = document.createElement('li');
-    console.log(currentNameHist)
-    currentNameHist.innerHTML = nameToHistory;
-
-    let currentPhoneHist = document.createElement('li');
-    currentPhoneHist.innerHTML = phoneToHistory;
-
-    let currentEmailHist = document.createElement('li');
-    currentEmailHist.innerHTML = emailToHistory;
-
-    currentContactData.append(currentNameHist, currentPhoneHist, currentEmailHist);
+     
+    
 }
-
+}
 
 
 
@@ -600,4 +640,4 @@ function setCancelHistoryModal(e) {
 //         listeners.splice(listeners.indexOf(listener), 1);
 //     }
 //     return[listen, unlisten];
-// })();
+// 
