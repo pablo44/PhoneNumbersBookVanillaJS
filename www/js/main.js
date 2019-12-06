@@ -128,46 +128,53 @@ function deleteContact(e) {
     // for (let i = 0; i < contactsArray.length; i++) {
 
 
-        // contactsArray[i].addEventListener('click', (e) => {
-        let contactToRem = e.target.closest('[id]');
-        let finalToRemove = contactToRem.getAttribute('id');
-        console.log(finalToRemove)
-        let idN = contactToRem.id;
-        console.log('id to remove', idN)
-        // for(let i =0; i<contactsArray.length; i++){
-        //     if(contactsArray[i].id ==idN){
-        let contactsBook = JSON.parse(localStorage['contactsBook']);
-        let contactIndex = contactsBook.findIndex(x => x.id == finalToRemove);
-        contactsBook.splice(contactIndex, 1);
-        localStorage['contactsBook'] = JSON.stringify(contactsBook);
-        displayContactBook();
-        console.log(contactsArray)
-        // break;
-    }
+    // contactsArray[i].addEventListener('click', (e) => {
+    let contactToRem = e.target.closest('[id]');
+    let finalToRemove = contactToRem.getAttribute('id');
+    console.log(finalToRemove)
+    let idN = contactToRem.id;
+    console.log('id to remove', idN)
+    // for(let i =0; i<contactsArray.length; i++){
+    //     if(contactsArray[i].id ==idN){
+    let contactsBook = JSON.parse(localStorage['contactsBook']);
+    let contactIndex = contactsBook.findIndex(x => x.id == finalToRemove);
+    contactsBook.splice(contactIndex, 1);
+    localStorage['contactsBook'] = JSON.stringify(contactsBook);
+    displayContactBook();
+    console.log(contactsArray)
+    // break;
+}
 
 
-    function editContact (e){
-        
-        let contactToEdit = e.target.closest('[id]');
-        let finalToEdit = contactToEdit.getAttribute('id');
-        let contactsBook = JSON.parse(localStorage['contactsBook']);
-        let contactToEIndex = contactsBook.findIndex(x =>x.id ==finalToEdit);
-        setCancelnewPersonModal('enable');
+function editContact(e) {
 
-        
-        let newContactName = document.getElementById('newPersonName')
-        let newContactPhone = document.getElementById('newPersonPhone')
-        let newContactEmail = document.getElementById('newPersonEmail')
+    let contactToEdit = e.target.closest('[id]');
+    let finalToEdit = contactToEdit.getAttribute('id');
+    let contactsBook = JSON.parse(localStorage['contactsBook']);
+    let contactToEIndex = contactsBook.findIndex(x => x.id == finalToEdit);
+    setCancelnewPersonModal('enable');
 
-        let nameToEdit = e.target.parentElement.children[0].innerText;
-         let phoneToEdit = e.target.parentElement.children[1].innerText;
-         let emailToEdit = e.target.parentElement.children[2].innerText;
 
-        newContactName.value= nameToEdit;
-        newContactPhone.value = phoneToEdit;
-        newContactEmail.value = emailToEdit;
+    let newContactName = document.getElementById('newPersonName')
+    let newContactPhone = document.getElementById('newPersonPhone')
+    let newContactEmail = document.getElementById('newPersonEmail')
 
-    }
+    let nameToEdit = e.target.parentElement.children[0].innerText;
+    let phoneToEdit = e.target.parentElement.children[1].innerText;
+    let emailToEdit = e.target.parentElement.children[2].innerText;
+
+    newContactName.value = nameToEdit;
+    newContactPhone.value = phoneToEdit;
+    newContactEmail.value = emailToEdit;
+
+    // let compliteNewContact = contactToEdit.reduce(function(previousValue, currentValue, index, array){
+    //     return contactToEdit.splice([phoneToEdit], [emailToEdit])
+    // });
+    // console.log(compliteNewContact)
+
+    //from Object Gustaw with id =contactToEindex we have to splice phone and e-mail
+
+}
 
 
 
@@ -264,15 +271,19 @@ function displayContactBook() {
             // futureDeleteBtn.id = 'data-id';
 
             futureDeleteBtn.addEventListener('click', deleteContact)
-            futureEditBtn.addEventListener('click',editContact)
-                // })
+            futureEditBtn.addEventListener('click', editContact)
+            // })
             //  () => {
             //     alert('here we are')
             // })
 
-            futureHistoryBtn.addEventListener('click', () => {
-                personHistoryModal.className = 'enable-modal'
-            })
+
+
+
+
+
+
+            futureHistoryBtn.addEventListener('click',setCancelHistoryModal)
 
             futureNameCol.innerHTML = contacts[i].name;
             futurePhoneCol.innerHTML = contacts[i].phone;
@@ -351,124 +362,149 @@ displayContactBook();
 //Modal to create HISTORY
 // let futureHistoryBtn = document.getElementById('contactHBtn');
 
+function setCancelHistoryModal(e) {
+    let nameToHistory = e.target.parentElement.children[0].innerText;
+    let phoneToHistory = e.target.parentElement.children[1].innerText;
+    let emailToHistory = e.target.parentElement.children[2].innerText;
+    console.log(nameToHistory)
+    let personHistoryModal = document.createElement('div');
+    
+    personHistoryModal.className = 'enable-modal';
+    personHistoryModal.id = 'personHistoryModal';
+    let backdrop = document.getElementById('backdrop');
+    backdrop.className = `enable-modal`;
 
-let personHistoryModal = document.createElement('div');
-personHistoryModal.className = 'disable-modal';
-personHistoryModal.id = 'personHistoryModal';
+    body.append(personHistoryModal);
 
-body.append(personHistoryModal);
+    let header = document.createElement('h3');
 
-let header = document.createElement('h3');
-
-let contactsHistory = JSON.parse(localStorage['contactsBook']);
-console.log(contactsHistory)
-let i = contactsHistory.length;
-header.innerHTML = "History of the contact: " + contactsHistory[0].name;
-// header.innerHTML = 'History of the Contact'
-
-let currentContactData = document.createElement('ul');
-currentContactData.className = 'list-data';
-currentContactData.id = 'listHisotry';
-
-personHistoryModal.append(currentContactData, header);
-
-let currentNameHist = document.createElement('li');
-currentNameHist.innerHTML = contactsHistory[0].name;
-
-let currentPhoneHist = document.createElement('li');
-currentPhoneHist.innerHTML = contactsHistory[0].phone;
-
-let currentEmailHist = document.createElement('li');
-currentEmailHist.innerHTML = contactsHistory[0].email;
-
-currentContactData.append(currentNameHist, currentPhoneHist, currentEmailHist);
-
-let historyRow = document.createElement('div');
-historyRow.appendChild(currentContactData);
-historyRow.className = 'history-row';
-
-personHistoryModal.append(historyRow);
-
-
-function setEmailHistoric() {
-    let userhistory = contacts[i].history.email;
-    for (let i = 0; i < userhistory.length; i++) {
-        let li = document.createElement('li');
-        li.innerHTML = + userhistory[i];
-    }
-
-    let oldPhones = document.createElement('div');
-    oldPhones.className = 'history-col history-phones';
-    oldPhones.innerHTML = 'old phones';
-
-
-
-    let oldPhonesList = document.createElement('ul');
-    oldPhonesList.className = 'old-phones';
-
-    let phoneItemHistoric = document.createElement('li');
-    phoneItemHistoric.id = 'phoneItmHistoric';
-
-    let phoneHolder = document.createElement('span');
-    phoneHolder.id = 'phoneHolder';
-    phoneHolder.innerHTML = setPhoneHistoric();
-
-    let restoreBtnPhone = document.createElement('input');
-    restoreBtnPhone.type = 'submit';
-    restoreBtnPhone.value = 'Submit';
-    restoreBtnPhone.id = 'restoreMeBtnPhone';
-    restoreBtnPhone.innerHTML = 'Restore';
-
-    let oldEmails = document.createElement('div');
-    oldEmails.className = 'history-col history-emails';
-    oldEmails.innerHTML = 'old phones';
-
-    let oldEmailsList = document.createElement('ul');
-    oldEmailsList.className = 'old-emails';
-
-    let emailItemHistoric = document.createElement('li');
-    emailItemHistoric.id = 'emailItmHistoric';
-
-    let emailHolder = document.createElement('span');
-    emailHolder.id = 'emailHolder';
-    emailHolder.innerHTML = setEmailHistoric();
-
-    let restoreBtnEmail = document.createElement('input');
-    restoreBtnEmail.type = 'submit';
-    restoreBtnEmail.value = 'Submit';
-    restoreBtnEmail.id = 'restoreMeBtnEmails';
-    restoreBtnEmail.innerHTML = 'Restore';
-
-    historyRow.append(oldPhones, oldEmails);
-
-    oldPhones.append(oldPhonesList, phoneItemHistoric, phoneHolder, restoreBtnPhone);
-    oldEmails.append(oldEmailList, emailItemHistoric, emailHolder, restoreBtnEmail);
-
-    function setPhoneHistoric() {
-        let userhistory = contact.history;
-        for (let i = 0; i < userhistory.length; i++) {
-            let li = document.createElement('li');
-            li.innerHTML = + userhistory[i];
+    let contactsHistory = JSON.parse(localStorage['contactsBook']);
+    console.log(contactsHistory)
+    let i = contactsHistory.length;
+    console.log(i)
+    let foundek = undefined;
+    for( let i of contactsHistory){
+        if(contactsHistory[i] === nameToHistory){
+            
+            return foundek =contactsHistory[i].history;
+           
         }
-        // }
-
-
-        //TO JEST DO EMAIL HOLDER,PHONE HOLDER
-        //here function to input a list of e.g phones
-
+        console.log(contactsHistory)
+        console.log(foundek)
     }
+    let nameExHistory = e.target.parentElement.children[0].innerText;
+    console.log(nameExHistory)
+    header.innerHTML = "History of the contact: " + nameToHistory;
+    // header.innerHTML = 'History of the Contact'
+//NOW THAT WHAT I'VE CLICKED I HAVE TO FIND IT AS AN OBJECT WITH A PROPERTY "HISTORY" WHICH IS AN ARRAY
+    let currentContactData = document.createElement('ul');
+    currentContactData.className = 'list-data';
+    currentContactData.id = 'listHisotry';
 
-    //----------------------------------------START----------------------------
-    //refresh window and new contact holder - newContactBody
+    personHistoryModal.append(currentContactData, header);
 
+    let currentNameHist = document.createElement('li');
+    console.log(currentNameHist)
+    currentNameHist.innerHTML = nameToHistory;
 
+    let currentPhoneHist = document.createElement('li');
+    currentPhoneHist.innerHTML = phoneToHistory;
 
+    let currentEmailHist = document.createElement('li');
+    currentEmailHist.innerHTML = emailToHistory;
 
-
-
-
-
+    currentContactData.append(currentNameHist, currentPhoneHist, currentEmailHist);
 }
+
+
+
+
+// let historyRow = document.createElement('div');
+// historyRow.appendChild(currentContactData);
+// historyRow.className = 'history-row';
+
+// personHistoryModal.append(historyRow);
+
+
+// function setEmailHistoric() {
+//     let userhistory = contacts[i].history.email;
+//     for (let i = 0; i < userhistory.length; i++) {
+//         let li = document.createElement('li');
+//         li.innerHTML = + userhistory[i];
+//     }
+
+//     let oldPhones = document.createElement('div');
+//     oldPhones.className = 'history-col history-phones';
+//     oldPhones.innerHTML = 'old phones';
+
+
+
+//     let oldPhonesList = document.createElement('ul');
+//     oldPhonesList.className = 'old-phones';
+
+//     let phoneItemHistoric = document.createElement('li');
+//     phoneItemHistoric.id = 'phoneItmHistoric';
+
+//     let phoneHolder = document.createElement('span');
+//     phoneHolder.id = 'phoneHolder';
+//     phoneHolder.innerHTML = setPhoneHistoric();
+
+//     let restoreBtnPhone = document.createElement('input');
+//     restoreBtnPhone.type = 'submit';
+//     restoreBtnPhone.value = 'Submit';
+//     restoreBtnPhone.id = 'restoreMeBtnPhone';
+//     restoreBtnPhone.innerHTML = 'Restore';
+
+//     let oldEmails = document.createElement('div');
+//     oldEmails.className = 'history-col history-emails';
+//     oldEmails.innerHTML = 'old phones';
+
+//     let oldEmailsList = document.createElement('ul');
+//     oldEmailsList.className = 'old-emails';
+
+//     let emailItemHistoric = document.createElement('li');
+//     emailItemHistoric.id = 'emailItmHistoric';
+
+//     let emailHolder = document.createElement('span');
+//     emailHolder.id = 'emailHolder';
+//     emailHolder.innerHTML = setEmailHistoric();
+
+//     let restoreBtnEmail = document.createElement('input');
+//     restoreBtnEmail.type = 'submit';
+//     restoreBtnEmail.value = 'Submit';
+//     restoreBtnEmail.id = 'restoreMeBtnEmails';
+//     restoreBtnEmail.innerHTML = 'Restore';
+
+//     historyRow.append(oldPhones, oldEmails);
+
+//     oldPhones.append(oldPhonesList, phoneItemHistoric, phoneHolder, restoreBtnPhone);
+//     oldEmails.append(oldEmailList, emailItemHistoric, emailHolder, restoreBtnEmail);
+
+//     function setPhoneHistoric() {
+//         let userhistory = contact.history;
+//         for (let i = 0; i < userhistory.length; i++) {
+//             let li = document.createElement('li');
+//             li.innerHTML = + userhistory[i];
+//         }
+//         // }
+
+
+//         //TO JEST DO EMAIL HOLDER,PHONE HOLDER
+//         //here function to input a list of e.g phones
+
+//     }
+
+//     //----------------------------------------START----------------------------
+//     //refresh window and new contact holder - newContactBody
+
+
+
+
+
+
+
+
+// }
 
 
 
