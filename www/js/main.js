@@ -106,7 +106,55 @@ function clearForm() {
         console.log(form);
     }
 }
+let newPersonEditModal = document.createElement('div');
+newPersonEditModal.className = 'disable-modal';
+newPersonEditModal.id = 'newPersonModal';
 
+body.append(newPersonEditModal);
+
+let lableEditModalName = document.createElement('lable');
+lableEditModalName.for = 'newPersonName';
+lableEditModalName.innerHTML = 'Name';
+
+let inputEditName = document.createElement('input');
+inputEditName.type = 'text';
+inputEditName.id = 'newPersonName';
+inputEditName.name = 'newPersonName';
+inputEditName.className = 'inputForm';
+
+let lableEditModalPhone = document.createElement('lable');
+lableEditModalPhone.for = 'newPersonPhone';
+lableEditModalPhone.innerHTML = 'Phone';
+
+let inputEditPhone = document.createElement('input');
+inputEditPhone.type = 'text';//here is the place for validation of phone numbers
+inputEditPhone.id = 'newPersonPhone';
+inputEditPhone.name = 'newPersonPhone';
+inputEditPhone.className = 'inputForm';
+
+let lableEditModalEmail = document.createElement('lable');
+lableEditModalEmail.for = 'newPersonEmail';
+lableModalEmail.innerHTML = 'Email';
+
+let inputEditEmail = document.createElement('input');
+inputEditEmail.type = 'text';
+inputEditEmail.id = 'newPersonEmail';
+inputEditEmail.name = 'newPersonEmail';
+inputEditEmail.className = 'inputForm';
+
+let newPersonEditBtn = document.createElement('input');
+newPersonEditBtn.type = 'submit';
+newPersonEditBtn.value = 'Submit';
+newPersonEditBtn.id = 'newPersonSubmitBtn';
+
+let newPersonEditCancelBtn = document.createElement('input');
+newPersonEditCancelBtn.type = 'submit';
+newPersonEditCancelBtn.value = 'Cancel';
+newPersonEditCancelBtn.id = 'newPersonCancelBtn';
+
+// let backdrop = document.createElement('div');
+// backdrop.className = 'disable-modal';
+// backdrop.id = 'backdrop';
 
 // let id = contactToRem.parentElement.id;
 //     console.log(id)
@@ -147,25 +195,38 @@ function deleteContact(e) {
 
 
 function editContact(e) {
+    // let editIcon = e.target.parentElement.children[2].innerText;
+
+    let newContactPhone = document.getElementById('newPersonPhone');
+    let newContactEmail = document.getElementById('newPersonEmail');
+
+    newContactPhone.innerHTML = document.getElementById('newPersonPhone').value;
+    
 
     let contactToEdit = e.target.closest('[id]');
     let finalToEdit = contactToEdit.getAttribute('id');
     let contactsBook = JSON.parse(localStorage['contactsBook']);
     let contactToEIndex = contactsBook.findIndex(x => x.id == finalToEdit);
+    let exactPersonToEdit =contactsBook[contactToEIndex];
+    exactPersonToEdit.phone =newContactPhone;
+    exactPersonToEdit.email = newContactEmail;
+    console.log(exactPersonToEdit)
+    localStorage['contactsBook'] = JSON.stringify(contactsBook);
+    
+    displayContactBook();
     setCancelnewPersonModal('enable');
 
 
-    let newContactName = document.getElementById('newPersonName')
-    let newContactPhone = document.getElementById('newPersonPhone')
-    let newContactEmail = document.getElementById('newPersonEmail')
+    
+    
 
     let nameToEdit = e.target.parentElement.children[0].innerText;
     let phoneToEdit = e.target.parentElement.children[1].innerText;
     let emailToEdit = e.target.parentElement.children[2].innerText;
 
-    newContactName.value = nameToEdit;
-    newContactPhone.value = phoneToEdit;
-    newContactEmail.value = emailToEdit;
+    // newContactName.value = nameToEdit;
+    // newContactPhone.value = phoneToEdit;
+    // newContactEmail.value = emailToEdit;
 
     // let compliteNewContact = contactToEdit.reduce(function(previousValue, currentValue, index, array){
     //     return contactToEdit.splice([phoneToEdit], [emailToEdit])
